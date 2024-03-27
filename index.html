@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Page Title</title>
+        </head>
+        <body>
+            <script>
+                function add7(num) {
+                    return num + 7;
+                }
+                console.log(add7(7))
+
+                let multiply = (x, y) => x * y;
+                console.log(multiply(7,3))
+
+                function capitalize(str) {
+                    let lower = str.toLowerCase();
+                    let char = lower.charAt(0);
+                    char = char.toUpperCase();
+                    lower = lower.slice(1);
+                    return char + lower;
+                }
+                console.log(capitalize("HeLlO"))
+
+                function lastLetter(str) {
+                    let last = str.slice(-1);
+                    return last;
+                }
+                console.log(lastLetter("Help"))
+
+                let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "))
+
+                for (let i = 1; i <= answer; i++) {
+                    if (i % 3 === 0 && i % 5 === 0){
+                        console.log("FizzBuzz");
+                    } else if (i % 3 === 0) {
+                        console.log("Fizz");
+                    } else if (i % 5 === 0) {
+                        console.log("Buzz");
+                    } else {
+                        console.log(i);
+                    }
+                }
+            </script>
+        </body>
+    </html>
