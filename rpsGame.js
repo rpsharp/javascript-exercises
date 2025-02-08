@@ -27,12 +27,9 @@ function playRPS(playerSelection, cpuSelection) {
     }
 }
 
-function playGame() {
-    let tieCount = 0
-      , lossCount = 0
-      , winCount = 0;
+function playGame(userSelection) {
 
-    for (let i = 1; i <= 5; i++){
+    /*for (let i = 1; i <= 5; i++){
         let userSelection = prompt("Let's play!", "Rock, Paper, Scissors");
         let result = playRPS(userSelection, getComputerChoice());
         if (result === "T") {
@@ -43,15 +40,44 @@ function playGame() {
             winCount++;
         }
         console.log(result);
-    }
+    }*/
     
-    if (winCount > lossCount) {
-        alert(`You won the series! You won ${winCount} rounds, tied ${tieCount}, and lost ${lossCount}.`)
-    } else if (winCount < lossCount) {
-        alert(`You lost the series! You lost ${lossCount} rounds, tied ${tieCount}, and won ${winCount}.`)
-    } else if (winCount == lossCount) {
-        alert(`Tie game! You tied ${tieCount} rounds, won ${winCount}, and lost ${lossCount}.`)
+    let result = playRPS(userSelection, getComputerChoice());
+
+    if (result === "T") {
+        tieCount++;
+    } else if (result === "L") {
+        lossCount++;
+    } else if (result === "W") {
+        winCount++;
     }
+    const results = document.querySelector("#results");
+
+    const roundResult = document.createElement("p");
+    roundResult.textContent = result;
+    results.appendChild(roundResult);
+
+    const final = document.createElement("h3");
+
+    if (winCount == 5) {
+        final.textContent = `You won the series! You won ${winCount} rounds, tied ${tieCount}, and lost ${lossCount}.`;
+    } else if (lossCount == 5) {
+        final.textContent = `You lost the series! You lost ${lossCount} rounds, tied ${tieCount}, and won ${winCount}.`;
+    } /*else if (winCount == lossCount) {
+        alert(`Tie game! You tied ${tieCount} rounds, won ${winCount}, and lost ${lossCount}.`)
+    }*/
+
+    results.appendChild(final);
 }
 
-playGame();
+let tieCount = 0
+, lossCount = 0
+, winCount = 0;
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playGame(button.id);
+    });
+});
